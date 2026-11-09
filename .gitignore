@@ -1,0 +1,14 @@
+# Dataset (150 MB, over GitHub's 100 MB limit) - download from Kaggle, see README
+data/*.csv
+
+# Jupyter / Python
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
