@@ -35,11 +35,12 @@ The CSV is not included in this repository (150 MB). Download `creditcard.csv` f
 
 - In the paired bootstrap, tuned XGBoost's PR-AUC was higher than tuned random forest's (+0.017, 95% CI [+0.004, +0.033]) and the random forest baseline's (+0.041, 95% CI [+0.017, +0.070]).
 - The random forest baseline's slightly higher F1 was not significant (−0.016, 95% CI [−0.046, +0.014]).
-- **Top predictors:** V14 and V4, followed by V10, V12, V17 and V11. Very negative values of V14, V10, V12 and V17, and high values of V4, push predictions toward fraud.
+- **Top predictors:** V14 ranks in the top two by gain, permutation importance and SHAP. V4 ranks 1st by permutation importance and 2nd by SHAP, but 5th by gain. V10, V12 and V17 rank high by gain and SHAP but lower by permutation importance, since they carry overlapping fraud signal: when one is shuffled, the model relies on the others. SHAP shows that very negative values of V14, V10, V12 and V17, and high values of V4, push predictions toward fraud.
 
 ## Limitations
 
 - V1–V28 are anonymized, so the predictors can't be explained in business terms.
+- The test set has only 95 frauds, so test metrics are uncertain (about ±0.07 PR-AUC). XGBoost's PR-AUC lead holds across bootstrap resamples of this test set, but its F1 is tied with random forest.
 - The data covers only two days, and a random split may overstate performance compared with an out-of-time split.
 - The threshold maximizes F1, which treats missed fraud and false alarms as equally costly.
 
